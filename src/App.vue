@@ -4,13 +4,17 @@ import axios from 'axios';
 
 // importo componenti
 import AppHeader from './components/AppHeader.vue'
+import AppMain from './components/AppMain.vue'
+import AppCard from './components/AppCard.vue'
 
 // importo store
 import { store } from './store';
 
 export default {
   components: {
-    AppHeader
+    AppHeader,
+    AppMain,
+    AppCard
   },
   data() {
     return {
@@ -18,10 +22,27 @@ export default {
     }
   },
   methods: {
+    getCard() {
+      let myURL = store.apiCall;
 
-  },
-  created() {
+      if (store.searchText !== '') {
+        myURL += `api_key=${store.apiKey}&query=${store.searchText}`;
+      }
 
+      // chiamata api cards
+      axios
+        .get(myURL)
+        .then((res => {
+          console.log(res.data.results);
+          store.moviesArr = res.data.results;
+        }))
+        .catch((err) => {
+          console.log("errori", err);
+        })
+    },
+    created() {
+      this.getCard();
+    }
   }
 }
 
@@ -29,7 +50,9 @@ export default {
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader @search="getCard" />
+  <AppMain />
+  <AppCard />
 </template>
 
 <style lang="scss">
