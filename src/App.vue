@@ -5,7 +5,6 @@ import axios from 'axios';
 // importo componenti
 import AppHeader from './components/AppHeader.vue'
 import AppMain from './components/AppMain.vue'
-import AppCard from './components/AppCard.vue'
 
 // importo store
 import { store } from './store';
@@ -14,7 +13,6 @@ export default {
   components: {
     AppHeader,
     AppMain,
-    AppCard
   },
   data() {
     return {
@@ -22,14 +20,14 @@ export default {
     }
   },
   methods: {
-    getCard() {
-      let myURL = store.apiCall;
+    getMovie() {
+      let myURL = store.apiCallMovie;
 
       if (store.searchText !== '') {
-        myURL += `api_key=${store.apiKey}&query=${store.searchText}`;
+        myURL += `?api_key=${store.apiKey}&query=${store.searchText}`;
       }
 
-      // chiamata api cards
+      // chiamata film
       axios
         .get(myURL)
         .then((res => {
@@ -39,10 +37,32 @@ export default {
         .catch((err) => {
           console.log("errori", err);
         })
+
+      this.getSeries();
+
     },
-    created() {
-      this.getCard();
-    }
+    getSeries() {
+      let myURLSeries = store.apiCallSeries;
+
+      if (store.searchText !== '') {
+        myURLSeries += `?api_key=${store.apiKey}&query=${store.searchText}`;
+      }
+
+      // chiamata serie tv
+      axios
+        .get(myURLSeries)
+        .then((res => {
+          console.log(res.data.results);
+          store.seriesArr = res.data.results;
+        }))
+        .catch((err) => {
+          console.log("errori", err);
+        })
+    },
+  },
+  created() {
+    this.getMovie();
+
   }
 }
 
@@ -50,9 +70,8 @@ export default {
 </script>
 
 <template>
-  <AppHeader @search="getCard" />
+  <AppHeader @search="getMovie" />
   <AppMain />
-  <AppCard />
 </template>
 
 <style lang="scss">
