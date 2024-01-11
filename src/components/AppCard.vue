@@ -18,7 +18,12 @@ export default {
                 de: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/400px-Flag_of_Germany.svg.png'
             }
         }
-    }
+    },
+    computed: {
+        rateVote() {
+            return Math.ceil(this.info.vote_average / 2);
+        },
+    },
 }
 </script>
 
@@ -38,7 +43,11 @@ export default {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNkFor3t5zhIyCnGKql1IEMQVqmAxqylbn8A&usqp=CAU"
             alt="flag">
     </div>
-    <div class="vote">voto: {{ info.vote_average }}</div>
+    <div class="vote">voto:
+        <span v-for="i in 5">
+            <i :class="i <= rateVote ? 'fas fa-star' : 'far fa-star'"></i>
+        </span>
+    </div>
 </template>
 
 <style lang="scss" scoped>
