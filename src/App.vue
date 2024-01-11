@@ -40,6 +40,8 @@ export default {
 
       this.getSeries();
 
+      store.searchText = '';
+
     },
     getSeries() {
       let myURLSeries = store.apiCallSeries;
@@ -62,7 +64,6 @@ export default {
   },
   created() {
     this.getMovie();
-
   }
 }
 
