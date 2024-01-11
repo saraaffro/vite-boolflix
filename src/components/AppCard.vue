@@ -45,7 +45,7 @@ export default {
     </div>
     <div class="vote">voto:
         <span v-for="i in 5">
-            <i :class="i <= rateVote ? 'fas fa-star' : 'far fa-star'"></i>
+            <i :class="i <= rateVote ? 'fa fa-star' : 'fa fa-star-o'"></i>
         </span>
     </div>
 </template>
