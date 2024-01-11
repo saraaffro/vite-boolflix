@@ -79,4 +79,8 @@ export default {
 @use './styles/general.scss' as *;
 @use './styles/partials/mixins' as *;
 @use './styles/partials/variables' as *;
+
+body {
+  background-color: #2f2f2f;
+}
 </style>

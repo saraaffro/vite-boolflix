@@ -28,29 +28,75 @@ export default {
 </script>
 
 <template>
-    <div class="card-cover">
-        <img :src="`https://image.tmdb.org/t/p/w342/${info.poster_path}`" alt="cover">
-    </div>
-    <div class="title" v-if="info.title">titolo: {{ info.title }}</div>
-    <div class="title" v-else>titolo: {{ info.name }}</div>
-    <div class="or-title" v-if="info.original_title">titolo originale: {{ info.original_title }}</div>
-    <div class="or-title" v-else>titolo originale: {{ info.original_name }}</div>
-    <div class="lang" v-if="flags[info.original_language]">
-        <img class="flag" :src="flags[info.original_language]" :alt="info.original_language">
-    </div>
-    <div class="lang" v-else>
-        <img class="flag"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNkFor3t5zhIyCnGKql1IEMQVqmAxqylbn8A&usqp=CAU"
-            alt="flag">
-    </div>
-    <div class="vote">voto:
-        <span v-for="i in 5">
-            <i :class="i <= rateVote ? 'fa fa-star' : 'fa fa-star-o'"></i>
-        </span>
+    <div class="card-container">
+        <div class="card-cover">
+            <img :src="`https://image.tmdb.org/t/p/w342/${info.poster_path}`" alt="cover">
+        </div>
+
+        <div class="card-informations">
+            <!-- titolo -->
+            <div class="info title" v-if="info.title"><strong>Titolo:</strong> {{ info.title }}</div>
+            <div class="info title" v-else><strong>Titolo:</strong> {{ info.name }}</div>
+            <div class="info or-title" v-if="info.original_title"><strong>Titolo originale:</strong> {{ info.original_title
+            }}
+            </div>
+            <div class="info or-title" v-else>Titolo originale: {{ info.original_name }}</div>
+
+            <!-- lingua -->
+            <div class="info lang" v-if="flags[info.original_language]">
+                <img class="flag" :src="flags[info.original_language]" :alt="info.original_language">
+            </div>
+            <div class="info lang" v-else>
+                <img class="flag"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNkFor3t5zhIyCnGKql1IEMQVqmAxqylbn8A&usqp=CAU"
+                    alt="flag">
+            </div>
+
+            <!-- overview -->
+            <div class="overview"><strong>Overview:</strong> {{ info.overview }}</div>
+
+            <!-- voto -->
+            <div class="info vote"><strong>Voto: </strong>
+                <span v-for="i in 5">
+                    <i :class="i <= rateVote ? 'fa fa-star' : 'fa fa-star-o'"></i>
+                </span>
+            </div>
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
+.card-cover {
+    width: 100%;
+
+    img {
+        width: 100%;
+    }
+}
+
+.card-container:hover .card-cover {
+    display: none;
+}
+
+.card-informations {
+    display: none;
+    background-color: rgb(154, 154, 154);
+    padding: 10px;
+    border: 1px solid white;
+
+    .info {
+        margin: 7px 0;
+    }
+
+    .lang {
+        text-align: center;
+    }
+}
+
+.card-container:hover .card-informations {
+    display: block;
+}
+
 .flag {
     width: 50px;
 }

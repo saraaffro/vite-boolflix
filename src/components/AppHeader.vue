@@ -18,7 +18,7 @@ export default {
             BOOLFLIX
         </div>
         <div class="searchbar">
-            <input type="text" placeholder="Cerca un titolo" v-model="store.searchText">
+            <input type="text" placeholder="Cerca un titolo" v-model="store.searchText" @keyup.enter="$emit('search')">
             <button type="submit" @click="$emit('search')">Cerca</button>
         </div>
 
