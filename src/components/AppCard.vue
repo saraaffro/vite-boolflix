@@ -35,12 +35,11 @@ export default {
 
         <div class="card-informations">
             <!-- titolo -->
-            <div class="info title" v-if="info.title"><strong>Titolo:</strong> {{ info.title }}</div>
-            <div class="info title" v-else><strong>Titolo:</strong> {{ info.name }}</div>
-            <div class="info or-title" v-if="info.original_title"><strong>Titolo originale:</strong> {{ info.original_title
+            <div class="info title"><strong>Titolo:</strong> {{ info.title || info.name }}</div>
+            <div class="info or-title"><strong>Titolo originale:</strong> {{ info.original_title
+                || info.original_name
             }}
             </div>
-            <div class="info or-title" v-else>Titolo originale: {{ info.original_name }}</div>
 
             <!-- lingua -->
             <div class="info lang" v-if="flags[info.original_language]">
@@ -48,12 +47,12 @@ export default {
             </div>
             <div class="info lang" v-else>
                 <img class="flag"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNkFor3t5zhIyCnGKql1IEMQVqmAxqylbn8A&usqp=CAU"
-                    alt="flag">
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Olympic_flag.svg/560px-Olympic_flag.svg.png"
+                    alt="olympic flag">
             </div>
 
             <!-- overview -->
-            <div class="overview"><strong>Overview:</strong> {{ info.overview }}</div>
+            <div class="info overview"><strong>Overview:</strong> {{ info.overview }}</div>
 
             <!-- voto -->
             <div class="info vote"><strong>Voto: </strong>
@@ -98,6 +97,6 @@ export default {
 }
 
 .flag {
-    width: 50px;
+    width: 30px;
 }
 </style>

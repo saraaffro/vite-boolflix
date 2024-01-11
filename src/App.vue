@@ -66,8 +66,6 @@ export default {
     this.getMovie();
   }
 }
-
-
 </script>
 
 <template>
