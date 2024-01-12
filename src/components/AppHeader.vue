@@ -14,14 +14,15 @@ export default {
 
 <template>
     <header>
-        <div class="logo">
-            BOOLFLIX
+        <div class="container">
+            <div class="logo">
+                BOOLFLIX
+            </div>
+            <div class="searchbar">
+                <input type="text" placeholder="Cerca un titolo" v-model="store.searchText" @keyup.enter="$emit('search')">
+                <button type="submit" @click="$emit('search')">Cerca</button>
+            </div>
         </div>
-        <div class="searchbar">
-            <input type="text" placeholder="Cerca un titolo" v-model="store.searchText" @keyup.enter="$emit('search')">
-            <button type="submit" @click="$emit('search')">Cerca</button>
-        </div>
-
     </header>
 </template>
 
@@ -29,10 +30,21 @@ export default {
 header {
     background-color: black;
     height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    .container {
+        height: 70px;
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
 
     .logo {
         color: red;
@@ -43,12 +55,14 @@ header {
     input {
         height: 25px;
         border-radius: 2px;
+        padding: 2px;
         border-color: transparent;
         margin-right: 10px;
     }
 
     button {
         padding: 3px;
+        width: 55px;
         background-color: red;
         border-color: transparent;
         border-radius: 3px;

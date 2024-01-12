@@ -30,7 +30,10 @@ export default {
 <template>
     <div class="card-container">
         <div class="card-cover">
-            <img :src="`https://image.tmdb.org/t/p/w342/${info.poster_path}`" alt="cover">
+            <img v-if="info.poster_path" :src="`https://image.tmdb.org/t/p/w342/${info.poster_path}`" alt="cover">
+            <img v-else
+                src="https://xmple.com/wallpaper/3d-cubes-red-1080x1440-c3-7a1c2c-b4152f-f7052d-l-342-a-105-f-11.svg"
+                alt="cover">
         </div>
 
         <div class="card-informations">
@@ -65,38 +68,57 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.card-cover {
-    width: 100%;
+.card-container {
+    position: relative;
 
-    img {
+    &:hover .card-cover {
+        opacity: 0;
+    }
+
+    &:hover .card-informations {
+        display: block;
+    }
+
+    .card-cover {
         width: 100%;
-    }
-}
 
-.card-container:hover .card-cover {
-    display: none;
-}
-
-.card-informations {
-    display: none;
-    background-color: rgb(154, 154, 154);
-    padding: 10px;
-    border: 1px solid white;
-
-    .info {
-        margin: 7px 0;
+        img {
+            width: 100%;
+        }
     }
 
-    .lang {
-        text-align: center;
+    .card-informations {
+        display: none;
+        background-color: #2f2f2f;
+        padding: 10px;
+        border: 1px solid white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        overflow-y: auto;
+
+        .info {
+            margin: 10px 0;
+        }
+
+        .lang {
+            text-align: center;
+
+            .flag {
+                width: 30px;
+            }
+        }
+
+        .fa {
+            color: rgb(255, 191, 0);
+        }
     }
-}
 
-.card-container:hover .card-informations {
-    display: block;
-}
 
-.flag {
-    width: 30px;
+
+
+
 }
 </style>
