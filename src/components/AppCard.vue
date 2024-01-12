@@ -31,9 +31,8 @@ export default {
     <div class="card-container">
         <div class="card-cover">
             <img v-if="info.poster_path" :src="`https://image.tmdb.org/t/p/w342/${info.poster_path}`" alt="cover">
-            <img v-else
-                src="https://xmple.com/wallpaper/3d-cubes-red-1080x1440-c3-7a1c2c-b4152f-f7052d-l-342-a-105-f-11.svg"
-                alt="cover">
+            <!-- se il film/serie tv non ha la cover -->
+            <img v-else src="https://image.tmdb.org/t/p/w342//vefWBq6xpeMYtF7ROgGfXLdp5Qu.jpg" alt="cover">
         </div>
 
         <div class="card-informations">
@@ -115,10 +114,8 @@ export default {
             color: rgb(255, 191, 0);
         }
     }
-
-
-
-
-
 }
 </style>
+
+
+
