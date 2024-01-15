@@ -37,8 +37,8 @@ export default {
 
         <div class="card-informations">
             <!-- titolo -->
-            <div class="info title"><strong>Titolo:</strong> {{ info.title || info.name }}</div>
-            <div class="info or-title"><strong>Titolo originale:</strong> {{ info.original_title
+            <div class="info"><strong>Titolo:</strong> {{ info.title || info.name }}</div>
+            <div class="info"><strong>Titolo originale:</strong> {{ info.original_title
                 || info.original_name
             }}
             </div>
@@ -54,10 +54,10 @@ export default {
             </div>
 
             <!-- overview -->
-            <div class="info overview"><strong>Overview:</strong> {{ info.overview }}</div>
+            <div class="info"><strong>Overview:</strong> {{ info.overview }}</div>
 
             <!-- voto -->
-            <div class="info vote"><strong>Voto: </strong>
+            <div class="info"><strong>Voto: </strong>
                 <span v-for="i in 5">
                     <i :class="i <= rateVote ? 'fa fa-star' : 'fa fa-star-o'"></i>
                 </span>

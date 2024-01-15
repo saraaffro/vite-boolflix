@@ -61,9 +61,6 @@ export default {
           console.log("errori", err);
         })
     },
-  },
-  created() {
-
   }
 }
 </script>

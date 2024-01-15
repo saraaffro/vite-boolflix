@@ -18,7 +18,7 @@ export default {
             <div class="logo">
                 BOOLFLIX
             </div>
-            <div class="searchbar">
+            <div>
                 <input type="text" placeholder="Cerca un titolo" v-model="store.searchText" @keyup.enter="$emit('search')">
                 <button type="submit" @click="$emit('search')">Cerca</button>
             </div>
